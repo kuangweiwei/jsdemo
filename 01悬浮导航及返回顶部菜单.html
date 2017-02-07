@@ -1,0 +1,96 @@
+<!doctype html>
+<html id="html">
+<head>
+    <script type="text/javascript" src="jquery.js"></script>
+    <meta charset="utf-8">
+    <title>01悬浮导航及返回顶部菜单</title>
+    <style>
+        /*reset*/
+        body,ul,li {margin: 0;padding: 0;}
+        a {text-decoration: none;color:#333;}
+        li {list-style: none;}
+        .navwrap {width:100%;background:#e7e7e7;height:50px;}
+        .navwrap .navbox {width:1020px;margin:0 auto;height:50px;}
+        .navwrap .navbox:after {
+            content:" ";
+            display: inline-block;
+            overflow: hidden;
+            line-height: 0;
+            clear: both;
+        }
+        .navbox .nav_l {float:left;}
+        .navbox .nav_l .logo {float:left;height:50px;line-height:50px;font-size:30px;color:#333;}
+        .navbox .nav_l .nav {float:left;height:50px;line-height: 50px;margin-left:50px;}
+        .navbox .nav_l .nav li {float:left;margin-right:30px;}
+        .navbox .nav_l .nav li a {padding:4px 0}
+        .navbox .nav_l .nav li a:hover {border-bottom: 3px #999 solid;}
+        .navbox .nav_r {float:right;}
+        .navbox .nav_r .search {float:right;position:relative;margin-top:14px;}
+        .navbox .nav_r .search input[type="text"] {float:left;background: #999;border:none;height:18px;line-height:18px;border-radius: 3px 0 0 3px;padding-left:10px;}
+        .navbox .nav_r .search input[type="button"] {float:left;margin:0;padding:0;border-radius: 0 3px 3px 0;background: skyblue;border:none;height:20px;line-height:20px;cursor: pointer;}
+
+        .backTop {position:fixed;right:0;bottom:40px;background: #999;font-size: 16px;padding:20px 10px;line-height: 20px;border-radius: 9px 5px 5px 9px;cursor: pointer;display:none;}
+        .backTop:hover {background: #666;}
+        /*.navbox .nav_l,.navbox .nav_r {float: left;}*/
+
+    </style>
+</head>
+
+<body style="height:2000px;">
+    <div class="navwrap">
+        <div class="navbox">
+            <div class="nav_l">
+                <a class="logo" href="#">tarena</a>
+                <ul class="nav">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">新闻资讯</a></li>
+                    <li><a href="#">产品展示</a></li>
+                    <li><a href="#">社区支持</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="nav_r">
+                <div class="search">
+                    <input type="text">
+                    <input type="button" value="搜索" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backTop" id="backTop">返回<br/>TOP</div>
+    <script>
+        $(function(){
+            $(document).scroll(function(){
+                var page = $(document).scrollTop();
+                document.title = page;
+                if(page>0){
+                    $(".navwrap").css({"position":"fixed","background":"transparent",}).children(".navbox").css({"background":"#666","border-radius":"5px"});
+                    $(".backTop").fadeIn(500);
+                }else{
+                    $(".navwrap").css({"position":"static","background":"#e7e7e7",}).children(".navbox").css({"background":"transparent","border-radius":"0"});
+                    $(".backTop").fadeOut(500);
+                };
+            });
+            $(".backTop").click(function(){
+                $("html").animate({
+                    scrollTop:"0px"
+                },500);
+
+//                $("html").scrollTop(0);
+            });
+        });
+
+
+////        js返回顶部方法
+//        var backTop = document.getElementById("backTop");
+//        var oHtml = document.getElementById("html");
+//        backTop.onclick = function(){
+//            console.info(2);
+////            way 01
+//            oHtml.scrollTop = 0;
+////            way 02
+//            document.body.scrollTop = document.documentElement.scrollTop = 0;
+//        }
+    </script>
+</body>
+</html>

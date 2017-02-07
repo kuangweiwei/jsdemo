@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>04焦点图-js</title>
+    <style>
+        .wrap {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .page {
+            position: absolute;
+            top: 0;
+            background: rgba(255,255,255,.5);
+            display: block;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .pre,.next {
+            position: absolute;
+            font-size: 28px;
+            width: 36px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            background: rgba(255,255,255,.7);
+            color: #ffffff;
+            top: 50%;
+            margin-top: -60px;
+            box-shadow: 2px 2px 10px #000;
+            cursor: pointer;
+        }
+        .pre:hover,.next:hover {
+            background: rgba(255,255,255,1);
+            box-shadow: 2px 2px 14px #000;
+            color: #000000;
+            transition: .5s;
+        }
+        .pre {
+            left: 0;}
+        .next {
+            right: 0;}
+
+        .desc {
+            position: absolute;
+            bottom: 0;
+            background: rgba(255,255,255,.5);
+            display: block;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            margin: 0;
+        }
+        .list {
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+        }
+        .list li {
+            font-size: 40px;
+            color: #ffffff;
+            float: left;
+            margin: 0 20px;
+            cursor: pointer;
+        }
+        .list .current {
+            color: darkred;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrap" class="wrap">
+        <img id="img" src="" />
+        <span id="page" class="page"></span>
+        <span id="pre" class="pre"> < </span>
+        <span id="next" class="next"> > </span>
+        <p id="desc" class="desc"></p>
+        <ul id="list" class="list"></ul>
+    </div>
+    <script>
+        window.onload = function(){
+            //获取基本元素
+            var oWrap = document.getElementById("wrap");
+            var oImg = document.getElementById("img");
+            var oPage = document.getElementById("page");
+            var oPre = document.getElementById("pre");
+            var oNext = document.getElementById("next");
+            var oDesc = document.getElementById("desc");
+            var oUl = document.getElementById("list");
+            var aLi = oUl.getElementsByTagName("li");
+            var arrUrl = ["./img/layer01.png","./img/layer02.png","./img/layer03.png"];
+            var arrDesc = ["第1张图片描述","第2张图片描述","第3张图片描述"];
+            var num = 0;
+            //reset
+            oImg.src = arrUrl[num];
+            oDesc.innerHTML = arrDesc[num];
+            oPage.innerHTML = num +1 + " / " + arrUrl.length;
+            //添加li标签
+            for(var a = 0;a < arrUrl.length;a ++){
+                oUl.innerHTML += "<li></li>";
+                aLi[num].className = "current";
+            };
+            //点击li其他随之改变
+
+
+
+        };
+    </script>
+</body>
+</html>

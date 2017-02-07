@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<script src="jquery.js"></script>
+<style>
+ul{margin:0;padding:0;}
+li{list-style:none;}
+.box{width:200px;}
+.menu li{float:left;margin:0 2px;background:#CC9;color:white;text-align:center;padding:2px 5px;}
+.menu .li_hover {background: #b9b988;}
+.menu:after {clear:both;overflow:hidden;content:" ";line-height: 0;display: block;}
+.menu .current{background:green;font-weight:bold;}
+.content {height:150px;border:#333 1px solid;}
+
+</style>
+<meta charset="utf-8">
+<title>02选项卡</title>
+</head>
+
+<body>
+<div class="box">
+	<ul class="menu">
+    	<li>电视剧</li>
+        <li>电影</li>
+        <li>综艺</li>
+    </ul>
+    <div class="content">
+        <div>电视剧</div>
+        <div>电影</div>
+        <div>综艺</div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $(".menu > li").eq(0).addClass("current").siblings().removeClass("current");
+        $(".content > div").eq(0).show().siblings().hide();
+        $(".menu li").click(function(){
+            $(this).addClass("current").siblings().removeClass("current");
+            var num = $(".menu li").index(this);
+            $(".content > div").eq(num).show().siblings().hide();
+        }).hover(function(){
+            $(this).not(".current").addClass("li_hover");
+        },function(){
+            $(this).not(".current").removeClass("li_hover");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<meta charset="utf-8">
+<title>03有下拉菜单的导航</title>
+    <style>
+        body{margin:0;font-family:"Microsoft YaHei";}
+        ul,li,dl,dd{margin:0;padding:0;list-style:none;}
+        a{text-decoration:none;color: #ffffff;}
+        img{display:block;}
+
+        .navwrap {
+            width: 100%;
+            background: #0a0f1c;
+        }
+        .navbox {
+            width: 1020px;
+            margin: 0 auto;
+            height: 60px;
+        }
+        .navbox:after {
+            content: " ";
+            display: block;
+            line-height: 0;
+            overflow: hidden;
+            clear: both;
+        }
+        .navbox .logo {
+            float: left;
+            height: 60px;
+            line-height: 60px;
+            font-size: 24px;
+        }
+        .navbox .nav {
+            float: left;
+            margin-left: 80px;
+        }
+        .navbox .nav > li {
+            float: left;
+        }
+        .navbox .nav > li a {
+            display: block;
+            color: #ffffff;
+            height: 60px;
+            line-height: 60px;
+            padding: 0 20px;
+        }
+        .navbox .nav .nav_current {
+            background: rgba(255,255,255,.3);
+        }
+        .nav .nav_son {
+            background: rgba(0,0,0,.3);
+        }
+        .nav .nav_son li {
+            border-bottom: 1px #000 dashed;
+            font-size: 14px;
+            line-height: 28px;
+            text-align: center;
+        }
+        .navbox .search {
+            float: right;
+        }
+        .navbox .search input {
+            float: left;
+        }
+        .navbox .search input[type="text"] {
+            background: #666;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            height: 22px;
+            line-height: 22px;
+            margin-top: 16px;
+            -webkit-border-radius:5px 0 0 5px;
+            -moz-border-radius:5px 0 0 5px;
+            border-radius:5px 0 0 5px;
+        }
+        .navbox .search input[type="button"] {
+            background: #333;
+            color: #666;
+            padding-left: 10px;
+            border: none;
+            outline: none;
+            height: 24px;
+            line-height: 24px;
+            margin-top: 16px;
+            -webkit-border-radius:0 5px 5px 0;
+            -moz-border-radius:0 5px 5px 0;
+            border-radius:0 5px 5px 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navwrap">
+        <div class="navbox">
+            <a class="logo" href="#">logo</a>
+            <ul class="nav">
+                <li>
+                    <a href="#">首页</a>
+                    <ul class="nav_son">
+                        <li>首页1</li>
+                        <li>首页2</li>
+                        <li>首页3</li>
+                        <li>首页4</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">设计网站</a>
+                    <ul class="nav_son">
+                        <li>设计网站1</li>
+                        <li>设计网站2</li>
+                        <li>设计网站3</li>
+                        <li>设计网站4</li>
+                        <li>设计网站5</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">素材网站</a>
+                    <ul class="nav_son">
+                        <li>素材网站1</li>
+                        <li>素材网站2</li>
+                        <li>素材网站3</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">设计资讯</a>
+                    <ul class="nav_son">
+                        <li>设计资讯1</li>
+                        <li>设计资讯2</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">干活资源</a>
+                    <ul class="nav_son">
+                        <li>干活资源1</li>
+                        <li>干活资源2</li>
+                        <li>干活资源3</li>
+                        <li>干活资源4</li>
+                        <li>干活资源5</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="search">
+                <input type="text" />
+                <input type="button" value="search" />
+            </div>
+        </div>
+    </div>
+<script>
+    $(function(){
+        $(".nav_son").hide();
+        $(".nav > li").mouseenter(function(){
+            $(this).addClass("nav_current").siblings().removeClass("nav_current");
+            $(this).find(".nav_son").stop(true,true).slideDown(300);
+        }).mouseleave(function(){
+            $(this).find(".nav_son").stop(true,true).slideUp(500);
+        })
+    });
+</script>
+</body>
+</html>
